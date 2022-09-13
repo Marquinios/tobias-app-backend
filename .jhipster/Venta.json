@@ -1,0 +1,44 @@
+{
+  "changelogDate": "20220913195200",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "fechaVenta",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "total",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "tipoVenta",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "estadoVenta",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Venta",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "id": false,
+      "otherEntityField": "id",
+      "otherEntityName": "pago",
+      "otherEntityRelationshipName": "venta",
+      "ownerSide": true,
+      "relationshipName": "pago",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "cliente",
+      "relationshipName": "cliente",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

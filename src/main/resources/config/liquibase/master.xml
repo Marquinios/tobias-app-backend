@@ -11,7 +11,18 @@
     <property name="datetimeType" value="datetime(6)" dbms="mysql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913155521_added_entity_Producto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913160000_added_entity_Ingrediente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913194707_added_entity_Promocion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913195028_added_entity_ListaVenta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913195200_added_entity_Venta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913195547_added_entity_Cliente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913200358_added_entity_Pago.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20220913160000_added_entity_constraints_Ingrediente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913195200_added_entity_constraints_Venta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913195028_added_entity_constraints_ListaVenta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913194707_added_entity_constraints_Promocion.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

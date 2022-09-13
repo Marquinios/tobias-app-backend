@@ -1,0 +1,36 @@
+{
+  "changelogDate": "20220913195028",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "cantidad",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "subtotal",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "precio",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "descuento",
+      "fieldType": "Float"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "ListaVenta",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "venta",
+      "relationshipName": "venta",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

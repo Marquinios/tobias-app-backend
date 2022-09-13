@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Promocion.
+    -->
+    <changeSet id="20220913194707-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="promocion_id"
+                                 baseTableName="rel_promocion__producto"
+                                 constraintName="fk_rel_promocion__producto__promocion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="promocion"/>
+
+        <addForeignKeyConstraint baseColumnNames="producto_id"
+                                 baseTableName="rel_promocion__producto"
+                                 constraintName="fk_rel_promocion__producto__producto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="producto"/>
+    </changeSet>
+</databaseChangeLog>
