@@ -33,7 +33,8 @@ public class Producto implements Serializable {
     @Column(name = "imagen_url")
     private String imagenUrl;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "productoId", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "producto_id")
     private Set<Ingrediente> ingredientes = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -146,7 +147,6 @@ public class Producto implements Serializable {
             ", nombre='" + getNombre() + "'" +
             ", precio=" + getPrecio() +
             ", imagenUrl='" + getImagenUrl() + "'" +
-            ", ingredientes='" + getIngredientes() + "'" +
             "}";
     }
 }

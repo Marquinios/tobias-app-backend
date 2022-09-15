@@ -4,7 +4,9 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tobias.domain.Producto;
@@ -29,6 +31,7 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public Producto save(Producto producto) {
         log.debug("Request to save Producto : {}", producto);
+
         return productoRepository.save(producto);
     }
 
@@ -64,7 +67,8 @@ public class ProductoServiceImpl implements ProductoService {
     @Transactional(readOnly = true)
     public Page<Producto> findAll(Pageable pageable) {
         log.debug("Request to get all Productos");
-        return productoRepository.findAll(pageable);
+        Pageable page = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id").descending());
+        return productoRepository.findAll(page);
     }
 
     @Override

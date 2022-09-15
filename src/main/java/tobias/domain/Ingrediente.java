@@ -28,7 +28,7 @@ public class Ingrediente implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "producto_id")
+    @Column(name = "producto_id", insertable = false, updatable = false)
     private Integer productoId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -84,6 +84,14 @@ public class Ingrediente implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    /*public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }*/
 
     public Integer getProductoId() {
         return productoId;

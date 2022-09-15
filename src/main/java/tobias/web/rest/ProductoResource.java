@@ -145,11 +145,11 @@ public class ProductoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of productos in body.
      */
     @GetMapping("/productos")
-    public ResponseEntity<List<Producto>> getAllProductos(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<Page<Producto>> getAllProductos(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Productos");
         Page<Producto> page = productoService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        return ResponseEntity.ok().headers(headers).body(page);
     }
 
     /**
