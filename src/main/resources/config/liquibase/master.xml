@@ -23,6 +23,7 @@
     <include file="config/liquibase/changelog/20220913195200_added_entity_constraints_Venta.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220913195028_added_entity_constraints_ListaVenta.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220913194707_added_entity_constraints_Promocion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913210443_added_entity_constraints_Lista_Venta.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

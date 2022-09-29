@@ -180,4 +180,16 @@ public class ProductoResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    /**
+     * {@code GET  /productos} : get all the productos without pagination.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of productos in body.
+     */
+    @GetMapping("/productos/list")
+    public ResponseEntity<List<Producto>> getAllProductosList() {
+        log.debug("REST request to get all Productos");
+        List<Producto> productosList = productoService.findAllList();
+        return ResponseEntity.ok().body(productosList);
+    }
 }

@@ -143,11 +143,11 @@ public class PagoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pagos in body.
      */
     @GetMapping("/pagos")
-    public ResponseEntity<List<Pago>> getAllPagos(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<Page<Pago>> getAllPagos(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Pagos");
         Page<Pago> page = pagoService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        return ResponseEntity.ok().headers(headers).body(page);
     }
 
     /**

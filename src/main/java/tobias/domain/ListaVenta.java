@@ -33,9 +33,12 @@ public class ListaVenta implements Serializable {
     @Column(name = "descuento")
     private Float descuento;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "pago", "cliente" }, allowSetters = true)
-    private Venta venta;
+    @Column(name = "venta_id", insertable = false, updatable = false)
+    private Integer ventaId;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Producto producto;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -104,17 +107,20 @@ public class ListaVenta implements Serializable {
         this.descuento = descuento;
     }
 
-    public Venta getVenta() {
-        return this.venta;
+    public Integer getVentaId() {
+        return ventaId;
     }
 
-    public void setVenta(Venta venta) {
-        this.venta = venta;
+    public void setVentaId(Integer ventaId) {
+        this.ventaId = ventaId;
     }
 
-    public ListaVenta venta(Venta venta) {
-        this.setVenta(venta);
-        return this;
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

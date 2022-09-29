@@ -139,11 +139,11 @@ public class VentaResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of ventas in body.
      */
     @GetMapping("/ventas")
-    public ResponseEntity<List<Venta>> getAllVentas(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<Page<Venta>> getAllVentas(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Ventas");
         Page<Venta> page = ventaService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        return ResponseEntity.ok().headers(headers).body(page);
     }
 
     /**

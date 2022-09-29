@@ -2,6 +2,9 @@ package tobias.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 /**
@@ -31,12 +34,16 @@ public class Venta implements Serializable {
     @Column(name = "estado_venta")
     private String estadoVenta;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pago_id")
     private Pago pago;
 
     @ManyToOne
     private Cliente cliente;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "venta_id")
+    private Set<ListaVenta> listaVentas = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -129,6 +136,14 @@ public class Venta implements Serializable {
     public Venta cliente(Cliente cliente) {
         this.setCliente(cliente);
         return this;
+    }
+
+    public Set<ListaVenta> getListaVentas() {
+        return listaVentas;
+    }
+
+    public void setListaVentas(Set<ListaVenta> listaVentas) {
+        this.listaVentas = listaVentas;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

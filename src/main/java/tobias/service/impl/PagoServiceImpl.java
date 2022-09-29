@@ -4,7 +4,9 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tobias.domain.Pago;
@@ -64,7 +66,8 @@ public class PagoServiceImpl implements PagoService {
     @Transactional(readOnly = true)
     public Page<Pago> findAll(Pageable pageable) {
         log.debug("Request to get all Pagos");
-        return pagoRepository.findAll(pageable);
+        Pageable page = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id").descending());
+        return pagoRepository.findAll(page);
     }
 
     @Override

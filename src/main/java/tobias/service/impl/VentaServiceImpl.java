@@ -1,10 +1,13 @@
 package tobias.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tobias.domain.Venta;
@@ -67,7 +70,8 @@ public class VentaServiceImpl implements VentaService {
     @Transactional(readOnly = true)
     public Page<Venta> findAll(Pageable pageable) {
         log.debug("Request to get all Ventas");
-        return ventaRepository.findAll(pageable);
+        Pageable page = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id").descending());
+        return ventaRepository.findAll(page);
     }
 
     @Override

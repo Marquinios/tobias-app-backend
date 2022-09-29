@@ -1,5 +1,6 @@
 package tobias.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,5 +83,11 @@ public class ProductoServiceImpl implements ProductoService {
     public void delete(Long id) {
         log.debug("Request to delete Producto : {}", id);
         productoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Producto> findAllList() {
+        log.debug("Request to get all Productos without pagination");
+        return productoRepository.findAll();
     }
 }
