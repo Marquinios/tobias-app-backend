@@ -1,10 +1,12 @@
 package tobias.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import tobias.domain.Venta;
+import tobias.service.dto.VentasTotalesDTO;
 
 /**
  * Service Interface for managing {@link Venta}.
@@ -56,4 +58,8 @@ public interface VentaService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    VentasTotalesDTO getVentasTotales();
+
+    List<Venta> getAllVentasByDate(LocalDate date);
 }

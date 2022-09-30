@@ -2,6 +2,7 @@ package tobias.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,6 +22,7 @@ import tech.jhipster.web.util.ResponseUtil;
 import tobias.domain.Venta;
 import tobias.repository.VentaRepository;
 import tobias.service.VentaService;
+import tobias.service.dto.VentasTotalesDTO;
 import tobias.web.rest.errors.BadRequestAlertException;
 
 /**
@@ -173,5 +175,30 @@ public class VentaResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    /**.
+     * {@code GET  /ventas/totales} : get retail and wholesale sales totals.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the venta, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/ventas/totales")
+    public ResponseEntity<VentasTotalesDTO> getVentasTotales() {
+        log.debug("REST request to get retail and wholesale sales totals : {}");
+        VentasTotalesDTO venta = ventaService.getVentasTotales();
+        return ResponseEntity.ok().body(venta);
+    }
+
+    /**
+     * {@code GET  /ventas/by-date} : get all the ventas by date.
+     *
+     *  @param date the date for get ventas.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of ventas in body.
+     */
+    @GetMapping("/ventas/by-date")
+    public ResponseEntity<List<Venta>> getAllVentasByDate(@RequestParam LocalDate date) {
+        log.debug("REST request to get Ventas by date : {}", date);
+        List<Venta> ventas = ventaService.getAllVentasByDate(date);
+        return ResponseEntity.ok().body(ventas);
     }
 }

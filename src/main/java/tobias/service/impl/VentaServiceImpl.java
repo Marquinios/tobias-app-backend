@@ -1,5 +1,6 @@
 package tobias.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tobias.domain.Venta;
 import tobias.repository.VentaRepository;
 import tobias.service.VentaService;
+import tobias.service.dto.VentasTotalesDTO;
 
 /**
  * Service Implementation for managing {@link Venta}.
@@ -85,5 +87,17 @@ public class VentaServiceImpl implements VentaService {
     public void delete(Long id) {
         log.debug("Request to delete Venta : {}", id);
         ventaRepository.deleteById(id);
+    }
+
+    @Override
+    public VentasTotalesDTO getVentasTotales() {
+        log.debug("Request to get retail and wholesale sales totals : {}");
+        return ventaRepository.getVentasTotales();
+    }
+
+    @Override
+    public List<Venta> getAllVentasByDate(LocalDate date) {
+        log.debug("Request to get Ventas by date : {}", date);
+        return ventaRepository.getVentasByDate(date);
     }
 }
