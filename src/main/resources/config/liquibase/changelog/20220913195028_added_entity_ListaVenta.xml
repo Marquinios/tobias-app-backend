@@ -33,6 +33,20 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="20220913195028-2" author="marcos">
+        <preConditions onFail="MARK_RAN" onFailMessage="Column address already exists!">
+            <not>
+                <columnExists tableName="lista_venta" columnName="producto_id"/>
+            </not>
+        </preConditions>
+        <addColumn  tableName="lista_venta">
+            <column name="producto_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn >
+    </changeSet>
+
+
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 
     <!--
