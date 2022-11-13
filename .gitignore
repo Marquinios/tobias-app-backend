@@ -48,7 +48,7 @@ local.properties
 .cproject
 
 # PDT-specific
-.buildpath
+.buildpathB
 
 # STS-specific
 /.sts4-cache/*
