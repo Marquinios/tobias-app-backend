@@ -7,7 +7,11 @@
         Added the constraints for entity Venta.
     -->
     <changeSet id="20220913210443-1" author="marcos">
-
+        <preConditions onFail="MARK_RAN" onFailMessage="Foreign Keyalready exists!">
+            <not>
+                <foreignKeyConstraintExists  foreignKeyTableName="lista_venta" foreignKeyName="fk_lista_venta__producto_id"/>
+            </not>
+        </preConditions>
         <addForeignKeyConstraint baseColumnNames="producto_id"
                                  baseTableName="lista_venta"
                                  constraintName="fk_lista_venta__producto_id"
@@ -15,4 +19,5 @@
                                  referencedTableName="producto"/>
 
     </changeSet>
+
 </databaseChangeLog>

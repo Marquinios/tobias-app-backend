@@ -20,7 +20,7 @@ public class Ingrediente implements Serializable {
     private Long id;
 
     @Column(name = "cantidad")
-    private Integer cantidad;
+    private Float cantidad;
 
     @Column(name = "unidad")
     private String unidad;
@@ -35,7 +35,7 @@ public class Ingrediente implements Serializable {
 
     public Ingrediente() {}
 
-    public Ingrediente(Integer cantidad, String unidad, String nombre) {
+    public Ingrediente(Float cantidad, String unidad, String nombre) {
         this.cantidad = cantidad;
         this.unidad = unidad;
         this.nombre = nombre;
@@ -54,16 +54,16 @@ public class Ingrediente implements Serializable {
         this.id = id;
     }
 
-    public Integer getCantidad() {
+    public Float getCantidad() {
         return this.cantidad;
     }
 
-    public Ingrediente cantidad(Integer cantidad) {
+    public Ingrediente cantidad(Float cantidad) {
         this.setCantidad(cantidad);
         return this;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(Float cantidad) {
         this.cantidad = cantidad;
     }
 

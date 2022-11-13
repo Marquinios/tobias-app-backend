@@ -43,7 +43,7 @@
             <column name="producto_id" type="bigint">
                 <constraints nullable="true"/>
             </column>
-        </addColumn >
+        </addColumn>
     </changeSet>
 
 

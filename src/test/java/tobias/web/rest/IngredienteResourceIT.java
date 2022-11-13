@@ -29,8 +29,8 @@ import tobias.repository.IngredienteRepository;
 @WithMockUser
 class IngredienteResourceIT {
 
-    private static final Integer DEFAULT_CANTIDAD = 1;
-    private static final Integer UPDATED_CANTIDAD = 2;
+    private static final Float DEFAULT_CANTIDAD = 1F;
+    private static final Float UPDATED_CANTIDAD = 2F;
 
     private static final String DEFAULT_UNIDAD = "AAAAAAAAAA";
     private static final String UPDATED_UNIDAD = "BBBBBBBBBB";
