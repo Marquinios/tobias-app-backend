@@ -38,6 +38,8 @@ public class Producto implements Serializable {
     private Set<Ingrediente> ingredientes = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
+    @Column(name = "activated", nullable = false)
+    private boolean activated;
 
     public Long getId() {
         return this.id;
@@ -121,6 +123,13 @@ public class Producto implements Serializable {
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -143,10 +152,11 @@ public class Producto implements Serializable {
     @Override
     public String toString() {
         return "Producto{" +
-            "id=" + getId() +
-            ", nombre='" + getNombre() + "'" +
-            ", precio=" + getPrecio() +
-            ", imagenUrl='" + getImagenUrl() + "'" +
-            "}";
+            "id=" + id +
+            ", nombre='" + nombre + '\'' +
+            ", precio=" + precio +
+            ", imagenUrl='" + imagenUrl + '\'' +
+            ", activaded=" + activated +
+            '}';
     }
 }

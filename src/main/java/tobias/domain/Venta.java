@@ -45,6 +45,9 @@ public class Venta implements Serializable {
     @JoinColumn(name = "venta_id")
     private Set<ListaVenta> listaVentas = new HashSet<>();
 
+    @Column(name = "activated", nullable = false)
+    private boolean activated;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -148,6 +151,14 @@ public class Venta implements Serializable {
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -169,11 +180,12 @@ public class Venta implements Serializable {
     @Override
     public String toString() {
         return "Venta{" +
-            "id=" + getId() +
-            ", fechaVenta='" + getFechaVenta() + "'" +
-            ", total=" + getTotal() +
-            ", tipoVenta='" + getTipoVenta() + "'" +
-            ", estadoVenta='" + getEstadoVenta() + "'" +
-            "}";
+            "id=" + id +
+            ", fechaVenta=" + fechaVenta +
+            ", total=" + total +
+            ", tipoVenta='" + tipoVenta + '\'' +
+            ", estadoVenta='" + estadoVenta + '\'' +
+            ", activated=" + activated +
+            '}';
     }
 }

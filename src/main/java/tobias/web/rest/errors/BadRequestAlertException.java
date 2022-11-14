@@ -20,7 +20,7 @@ public class BadRequestAlertException extends AbstractThrowableProblem {
     }
 
     public BadRequestAlertException(URI type, String defaultMessage, String entityName, String errorKey) {
-        super(type, defaultMessage, Status.BAD_REQUEST, null, null, null, getAlertParameters(entityName, errorKey));
+        super(type, defaultMessage, Status.BAD_REQUEST, null, null, null, getAlertParameters(entityName, defaultMessage));
         this.entityName = entityName;
         this.errorKey = errorKey;
     }
@@ -33,9 +33,9 @@ public class BadRequestAlertException extends AbstractThrowableProblem {
         return errorKey;
     }
 
-    private static Map<String, Object> getAlertParameters(String entityName, String errorKey) {
+    private static Map<String, Object> getAlertParameters(String entityName, String defaultMessage) {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("message", "error." + errorKey);
+        parameters.put("message", defaultMessage);
         parameters.put("params", entityName);
         return parameters;
     }

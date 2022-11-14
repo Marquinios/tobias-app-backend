@@ -170,6 +170,20 @@ public class VentaResource {
     @DeleteMapping("/ventas/{id}")
     public ResponseEntity<Void> deleteVenta(@PathVariable Long id) {
         log.debug("REST request to delete Venta : {}", id);
+
+        Venta existingVenta = ventaRepository.findById(id).get();
+
+        if (existingVenta == null) {
+            throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+        }
+        if (!existingVenta.getEstadoVenta().equalsIgnoreCase("cancelado")) {
+            throw new BadRequestAlertException(
+                "Solo se pueden borrar Ventas con estado = 'CANCELADO'",
+                ENTITY_NAME,
+                "Venta != 'CANCELADO'"
+            );
+        }
+
         ventaService.delete(id);
         return ResponseEntity
             .noContent()

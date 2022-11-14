@@ -174,6 +174,11 @@ public class ProductoResource {
     @DeleteMapping("/productos/{id}")
     public ResponseEntity<Void> deleteProducto(@PathVariable Long id) {
         log.debug("REST request to delete Producto : {}", id);
+
+        if (!productoRepository.existsById(id)) {
+            throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+        }
+
         productoService.delete(id);
         return ResponseEntity
             .noContent()

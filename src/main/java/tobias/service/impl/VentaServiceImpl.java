@@ -34,13 +34,38 @@ public class VentaServiceImpl implements VentaService {
     @Override
     public Venta save(Venta venta) {
         log.debug("Request to save Venta : {}", venta);
+        venta.setActivated(true);
         return ventaRepository.save(venta);
     }
 
     @Override
     public Venta update(Venta venta) {
         log.debug("Request to update Venta : {}", venta);
-        return ventaRepository.save(venta);
+        Venta existingVenta = ventaRepository.findById(venta.getId()).get();
+
+        if (venta.getFechaVenta() != null) {
+            existingVenta.setFechaVenta(venta.getFechaVenta());
+        }
+        if (venta.getTotal() != null) {
+            existingVenta.setTotal(venta.getTotal());
+        }
+        if (venta.getTipoVenta() != null) {
+            existingVenta.setTipoVenta(venta.getTipoVenta());
+        }
+        if (venta.getEstadoVenta() != null) {
+            existingVenta.setEstadoVenta(venta.getEstadoVenta());
+        }
+        if (venta.getPago() != null) {
+            existingVenta.setPago(venta.getPago());
+        }
+        if (venta.getCliente() != null) {
+            existingVenta.setCliente(venta.getCliente());
+        }
+        if (venta.getListaVentas() != null && !venta.getListaVentas().isEmpty()) {
+            existingVenta.setListaVentas(venta.getListaVentas());
+        }
+
+        return ventaRepository.save(existingVenta);
     }
 
     @Override
@@ -73,7 +98,7 @@ public class VentaServiceImpl implements VentaService {
     public Page<Venta> findAll(Pageable pageable) {
         log.debug("Request to get all Ventas");
         Pageable page = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id").descending());
-        return ventaRepository.findAll(page);
+        return ventaRepository.findByActivated(true, page);
     }
 
     @Override
@@ -86,7 +111,9 @@ public class VentaServiceImpl implements VentaService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Venta : {}", id);
-        ventaRepository.deleteById(id);
+        Venta existingVenta = ventaRepository.findById(id).get();
+        existingVenta.setActivated(false);
+        ventaRepository.save(existingVenta);
     }
 
     @Override
@@ -98,6 +125,6 @@ public class VentaServiceImpl implements VentaService {
     @Override
     public List<Venta> getAllVentasByDate(LocalDate date) {
         log.debug("Request to get Ventas by date : {}", date);
-        return ventaRepository.getVentasByDate(date);
+        return ventaRepository.getVentasByDate(date, true);
     }
 }

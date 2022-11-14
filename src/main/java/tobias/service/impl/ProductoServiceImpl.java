@@ -32,14 +32,29 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public Producto save(Producto producto) {
         log.debug("Request to save Producto : {}", producto);
-
+        producto.setActivated(true);
         return productoRepository.save(producto);
     }
 
     @Override
     public Producto update(Producto producto) {
         log.debug("Request to update Producto : {}", producto);
-        return productoRepository.save(producto);
+        Producto existingProducto = productoRepository.findById(producto.getId()).get();
+
+        if (producto.getNombre() != null) {
+            existingProducto.setNombre(producto.getNombre());
+        }
+        if (producto.getPrecio() != null) {
+            existingProducto.setPrecio(producto.getPrecio());
+        }
+        if (producto.getImagenUrl() != null) {
+            existingProducto.setImagenUrl(producto.getImagenUrl());
+        }
+        if (producto.getIngredientes() != null && !producto.getIngredientes().isEmpty()) {
+            existingProducto.setIngredientes(producto.getIngredientes());
+        }
+
+        return productoRepository.save(existingProducto);
     }
 
     @Override
@@ -69,7 +84,7 @@ public class ProductoServiceImpl implements ProductoService {
     public Page<Producto> findAll(Pageable pageable) {
         log.debug("Request to get all Productos");
         Pageable page = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id").descending());
-        return productoRepository.findAll(page);
+        return productoRepository.findByActivated(true, page);
     }
 
     @Override
@@ -82,12 +97,14 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Producto : {}", id);
-        productoRepository.deleteById(id);
+        Producto existingProducto = productoRepository.findById(id).get();
+        existingProducto.setActivated(false);
+        productoRepository.save(existingProducto);
     }
 
     @Override
     public List<Producto> findAllList() {
         log.debug("Request to get all Productos without pagination");
-        return productoRepository.findAll();
+        return productoRepository.findByActivated(true);
     }
 }
