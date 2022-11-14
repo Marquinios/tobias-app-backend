@@ -31,7 +31,7 @@ public class ReporteResource {
         byte[] data = reporteService.generateReporteInsumos(reporteInsumosDTO);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set(HttpHeaders.CONTENT_DISPOSITION, "inline:filename=calculos-insumos.pdf");
+        headers.set(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=Calculos-Insumos.pdf");
 
         return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(data);
     }
